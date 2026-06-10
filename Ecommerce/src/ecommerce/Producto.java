@@ -1,18 +1,20 @@
 package ecommerce;
 
-public class Producto {
-	int SKU;
+public class Producto extends CatalogoDeProductos{
+	private Integer SKU;
 	String nombre;
 	String marca;
 	String categoria;
 	Float precio;
 	Float precioFinal;
 	Float peso;
+	Float descuento;
+	
 	
 	public Producto(int sku, String nombre, String marca, String categoria, Float precio, Float precioFinal,
 			Float peso) {
 		super();
-		SKU = sku;
+		this.SKU = sku;
 		this.nombre = nombre;
 		this.marca = marca;
 		this.categoria = categoria;
@@ -25,8 +27,8 @@ public class Producto {
 		return SKU;
 	}
 
-	public void setSKU(int sKU) {
-		SKU = sKU;
+	public void setSKU(int sku) {
+		SKU = sku;
 	}
 
 	public String getNombre() {
@@ -66,7 +68,7 @@ public class Producto {
 	}
 
 	public void setPrecioFinal(Float precioFinal) {
-		this.precioFinal = precioFinal;
+		this.precioFinal = precio * this.descuento;
 	}
 
 	public Float getPeso() {
@@ -78,7 +80,11 @@ public class Producto {
 		this.peso = peso;
 	}
 	
-
+	public boolean validar() {
+		
+		return this.nombre != null && this.SKU != null;
+		
+	}
 	
 	
 	
