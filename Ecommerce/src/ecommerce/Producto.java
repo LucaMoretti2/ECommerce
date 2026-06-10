@@ -70,12 +70,15 @@ public class Producto {
 	}
 
 	public Float getPeso() {
-		return peso;
+		return peso; // pesoo
+		
 	}
 
 	public void setPeso(Float peso) {
 		this.peso = peso;
 	}
+	
+
 	
 	
 	
