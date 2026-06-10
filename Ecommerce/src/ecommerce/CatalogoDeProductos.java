@@ -5,3 +5,5 @@ public class CatalogoDeProductos {
 	String descripcion;
 	Float precioBaseCalculado;
 }
+
+
