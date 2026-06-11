@@ -7,6 +7,7 @@ public abstract class CatalogoDeProductos {
 	public abstract float getPrecioFinal();
 	public abstract void decrementarStock();
 	public abstract void incrementarStock();
+	protected abstract float getPeso();
 }
 
 

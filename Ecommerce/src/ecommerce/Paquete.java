@@ -6,6 +6,7 @@ public class Paquete extends CatalogoDeProductos{
 	
 	 List<CatalogoDeProductos> productos;
 	 float descuento;
+	 float peso;
 	
 	public void agregarProducto(CatalogoDeProductos producto) {
 		this.productos.add(producto);
@@ -38,6 +39,14 @@ public class Paquete extends CatalogoDeProductos{
 		for(CatalogoDeProductos p: productos) {
 			p.incrementarStock();
 		}
+	}
+	
+	public float getPeso() {
+		float peso= 0;
+		for(CatalogoDeProductos p: productos) {
+			peso += p.getPeso();
+		}
+		return peso;
 	}
 	
 }

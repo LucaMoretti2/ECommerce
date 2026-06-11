@@ -6,7 +6,9 @@ public class Pedido {
 
 	EstadoDePedido estadoActual;
 	List<CatalogoDeProductos> productos;
-	//MetedoDeEnvio metodoDeEnvio;
+	float peso;
+	float precio;
+	MetodoDeEnvio metodoDeEnvio;
 	//MetodoDePago metodoDePago;
 	//List<ObservadorDePedido> observadores;
 	
@@ -82,6 +84,28 @@ public class Pedido {
 
 	public void generarNotaCreditoEnvio() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public float getPeso() {
+		float peso = 0;
+		for(CatalogoDeProductos p: productos) {
+			peso += p.getPeso();
+		}
+		return peso;
+	}
+	
+	public float getPrecio() {
+		float precio = 0;
+		for(CatalogoDeProductos p: productos) {
+			precio += p.getPrecioFinal();
+		}
+		return precio;
+	}
+	
+	public double calcularCostoDeEnvio() {
+		return this.metodoDeEnvio.costoDeEnvio(this);
+		
 		
 	}
 	

@@ -68,7 +68,7 @@ public class Producto extends CatalogoDeProductos{
 		return precio * (1 - descuento);
 	}
 
-	public Float getPeso() {
+	public float getPeso() {
 		return peso;
 	}
 
