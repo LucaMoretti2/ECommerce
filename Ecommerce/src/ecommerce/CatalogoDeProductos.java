@@ -1,9 +1,12 @@
 package ecommerce;
 
-public class CatalogoDeProductos {
+public abstract class CatalogoDeProductos {
 	String nombre;
 	String descripcion;
-	Float precioBaseCalculado;
+	
+	public abstract float getPrecioFinal();
+	public abstract void decrementarStock();
+	public abstract void incrementarStock();
 }
 
 

@@ -6,21 +6,22 @@ public class Producto extends CatalogoDeProductos{
 	String marca;
 	String categoria;
 	Float precio;
-	Float precioFinal;
 	Float peso;
 	Float descuento;
+	int stock;
 	
 	
-	public Producto(int sku, String nombre, String marca, String categoria, Float precio, Float precioFinal,
-			Float peso) {
+	public Producto(int sku, String nombre, String marca, String categoria, Float precio,
+			Float peso, Float descuento, int stock) {
 		super();
 		this.SKU = sku;
 		this.nombre = nombre;
 		this.marca = marca;
 		this.categoria = categoria;
 		this.precio = precio;
-		this.precioFinal = precioFinal;
 		this.peso = peso;
+		this.descuento = descuento;
+		this.stock = stock;
 	}
 
 	public int getSKU() {
@@ -63,27 +64,49 @@ public class Producto extends CatalogoDeProductos{
 		this.precio = precio;
 	}
 
-	public Float getPrecioFinal() {
-		return precioFinal;
-	}
-
-	public void setPrecioFinal(Float precioFinal) {
-		this.precioFinal = precio * this.descuento;
+	public float getPrecioFinal() {
+		return precio * (1 - descuento);
 	}
 
 	public Float getPeso() {
-		return peso; // pesoo
-		
+		return peso;
 	}
 
 	public void setPeso(Float peso) {
 		this.peso = peso;
 	}
 	
+	public Float getDescuento() {
+		return descuento;
+	}
+	
+	public void setDescuento(Float descuento) {
+		this.descuento = descuento;
+	}
+	
+	public int getStock() {
+		return stock;
+	}
+	
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	
+	
 	public boolean validar() {
-		
 		return this.nombre != null && this.SKU != null;
-		
+	}
+
+	@Override
+	public void decrementarStock() {
+		// TODO Auto-generated method stub
+		stock--;
+	}
+
+	@Override
+	public void incrementarStock() {
+		// TODO Auto-generated method stub
+		stock++;
 	}
 	
 	
