@@ -32,8 +32,6 @@ public class Entregado implements EstadoDePedido {
 		throw new RuntimeException("No se puede entregar un pedido en entregado");
 	}
 
-	
-
 	@Override
 	public void cancelarPedido(Pedido pedido) {
 		// TODO Auto-generated method stub
@@ -45,5 +43,6 @@ public class Entregado implements EstadoDePedido {
 		// TODO Auto-generated method stub
 		throw new RuntimeException("No se puede confirmar un pedido en entregado");
 	}
+	//asd
 
 }
