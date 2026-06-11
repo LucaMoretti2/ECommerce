@@ -1,4 +1,7 @@
-package ecommerce;
+package estadoDePedido;
+
+import ecommerce.CatalogoDeProductos;
+import ecommerce.Pedido;
 
 public interface EstadoDePedido {
 

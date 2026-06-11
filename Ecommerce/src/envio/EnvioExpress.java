@@ -1,4 +1,6 @@
-package ecommerce;
+package envio;
+
+import ecommerce.Pedido;
 
 public class EnvioExpress implements MetodoDeEnvio {
 

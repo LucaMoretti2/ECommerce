@@ -1,4 +1,8 @@
-package ecommerce;
+package estadoDePedido;
+
+
+import ecommerce.CatalogoDeProductos;
+import ecommerce.Pedido;
 
 public class Borrador implements EstadoDePedido {
 
@@ -44,6 +48,5 @@ public class Borrador implements EstadoDePedido {
 		// TODO Auto-generated method stub
 		throw new RuntimeException("No se puede entregar un pedido en borrador");
 	}
-
 	
 }

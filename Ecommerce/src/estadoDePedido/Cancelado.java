@@ -1,5 +1,6 @@
-package ecommerce;
+package estadoDePedido;
 
+import ecommerce.*;
 public class Cancelado implements EstadoDePedido {
 
 	@Override

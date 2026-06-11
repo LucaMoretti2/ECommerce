@@ -2,15 +2,21 @@ package ecommerce;
 
 import java.util.List;
 
+import envio.MetodoDeEnvio;
+import estadoDePedido.EstadoDePedido;
+import notificaciones.*;
+
 public class Pedido {
 
 	EstadoDePedido estadoActual;
+	EstadoDePedido estadoAnterior;
 	List<CatalogoDeProductos> productos;
 	float peso;
 	float precio;
 	MetodoDeEnvio metodoDeEnvio;
 	//MetodoDePago metodoDePago;
-	//List<ObservadorDePedido> observadores;
+	List<ObservadorDePedido> observadores;
+	String clienteMail;
 	
 	public Pedido(EstadoDePedido e, List<CatalogoDeProductos> p) {
 		this.estadoActual = e;
@@ -26,6 +32,7 @@ public class Pedido {
 	}
 	
 	public void setEstado(EstadoDePedido e) {
+		this.estadoAnterior = this.estadoActual;
 		this.estadoActual = e;
 	}
 	
@@ -103,12 +110,25 @@ public class Pedido {
 		return precio;
 	}
 	
+	public List<CatalogoDeProductos> getProductos(){
+		return productos;
+	}
+	
 	public double calcularCostoDeEnvio() {
 		return this.metodoDeEnvio.costoDeEnvio(this);
 		
 		
 	}
-	
-	
+	public void agregarObservador(ObservadorDePedido obs) {
+		observadores.add(obs);
+	}
+	public void quitarObservador(ObservadorDePedido obs) {
+		observadores.remove(obs);
+	}
+	public void notificar(EstadoDePedido anterior, EstadoDePedido nuevo){
+		for(ObservadorDePedido obs: observadores) {
+			obs.actualizar(this, anterior, nuevo);
+		}
+	}
 	
 }
