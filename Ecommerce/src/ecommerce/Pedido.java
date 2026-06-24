@@ -4,6 +4,7 @@ import java.util.List;
 
 import envio.MetodoDeEnvio;
 import estadoDePedido.EstadoDePedido;
+import metodosDePago.MetodosDePago;
 import notificaciones.*;
 
 public class Pedido {
@@ -14,7 +15,7 @@ public class Pedido {
 	float peso;
 	float precio;
 	MetodoDeEnvio metodoDeEnvio;
-	//MetodoDePago metodoDePago;
+	MetodosDePago metodoDePago;
 	List<ObservadorDePedido> observadores;
 	Cliente cliente; //ver como notificar en el mail del cliente
 	
@@ -118,7 +119,7 @@ public class Pedido {
 		return productos;
 	}
 	
-	public double calcularCostoDeEnvio() {
+	public float calcularCostoDeEnvio() {
 		return this.metodoDeEnvio.costoDeEnvio(this);
 		
 		
@@ -135,4 +136,7 @@ public class Pedido {
 		}
 	}
 	
+	public float getMontoTotal() {
+		return (getPrecio() + calcularCostoDeEnvio());
+	}
 }

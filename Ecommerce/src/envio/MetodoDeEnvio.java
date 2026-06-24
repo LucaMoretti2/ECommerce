@@ -5,6 +5,6 @@ import ecommerce.Pedido;
 public interface MetodoDeEnvio {
 
 	
-	 double costoDeEnvio(Pedido pedido);
+	 float costoDeEnvio(Pedido pedido);
 	
 }
