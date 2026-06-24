@@ -16,11 +16,15 @@ public class Pedido {
 	MetodoDeEnvio metodoDeEnvio;
 	//MetodoDePago metodoDePago;
 	List<ObservadorDePedido> observadores;
-	String clienteMail;
+	Cliente cliente; //ver como notificar en el mail del cliente
 	
 	public Pedido(EstadoDePedido e, List<CatalogoDeProductos> p) {
 		this.estadoActual = e;
 		this.productos = p;
+	}
+	
+	public Cliente getCliente() {
+		return cliente;
 	}
 	
 	public void agregarProducto(CatalogoDeProductos p) {
@@ -49,7 +53,7 @@ public class Pedido {
 	}
 	
 	public void confirmarPedido() {
-		//decremetarStock();
+		decrementarStock();
 		estadoActual.confirmarPedido(this);
 	}
 	

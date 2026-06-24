@@ -1,5 +1,8 @@
 package ecommerce;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Producto extends CatalogoDeProductos{
 	private Integer SKU;
 	String nombre;
@@ -9,6 +12,10 @@ public class Producto extends CatalogoDeProductos{
 	Float peso;
 	Float descuento;
 	int stock;
+	Float alto;
+	Float ancho;
+	Map<String, Object> atributosDinamicos;
+	
 	
 	
 	public Producto(int sku, String nombre, String marca, String categoria, Float precio,
@@ -22,8 +29,9 @@ public class Producto extends CatalogoDeProductos{
 		this.peso = peso;
 		this.descuento = descuento;
 		this.stock = stock;
+		this.atributosDinamicos = new HashMap<>();
 	}
-
+	
 	public int getSKU() {
 		return SKU;
 	}
@@ -93,8 +101,18 @@ public class Producto extends CatalogoDeProductos{
 	}
 	
 	
-	public boolean validar() {
-		return this.nombre != null && this.SKU != null;
+	public boolean validar(String[] atributosDinamicosRequeridos) {
+		if( this.nombre != null && this.SKU != null) {
+			return false;
+		}
+		if (atributosDinamicosRequeridos != null) {
+            for (String atributo : atributosDinamicosRequeridos) {
+                if (!this.atributosDinamicos.containsKey(atributo) || this.atributosDinamicos.get(atributo) == null) {
+                    return false; 
+                }
+            }
+		}
+		return true;
 	}
 
 	@Override
@@ -109,6 +127,13 @@ public class Producto extends CatalogoDeProductos{
 		stock++;
 	}
 	
+	public void agregarAtributoDinamico(String nombreAtributo, Object valor) {
+        this.atributosDinamicos.put(nombreAtributo, valor);
+    }
+	
+	public Object getAtributoDinamico(String nombreAtributo) {
+        return this.atributosDinamicos.get(nombreAtributo);
+    }
 	
 	
 	
