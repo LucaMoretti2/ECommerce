@@ -1,6 +1,8 @@
 package reporte;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import ecommerce.CatalogoDeProductos;
@@ -9,7 +11,7 @@ import ecommerce.Producto;
 
 public class ReporteProductosMasVendidos implements ReporteVisitor {
 	
-	List<CatalogoDeProductos> productosMasVendidos;
+	List<CatalogoDeProductos> productosMasVendidos = new ArrayList<>();
 	
 
 	@Override
@@ -25,7 +27,13 @@ public class ReporteProductosMasVendidos implements ReporteVisitor {
 	}
 	
 	public List<CatalogoDeProductos> getProductosMasVendidos(){
-		return productosMasVendidos;
+		List<CatalogoDeProductos> ordenados = new ArrayList<>(productosMasVendidos);
+	    Collections.sort(ordenados, (a, b) -> b.getCantidadVendida() - a.getCantidadVendida());
+	    return ordenados;
 	}
 
+	public String exportar(ExportadorReporte exportador) {
+        return exportador.exportar(getProductosMasVendidos());
+    }
+	
 }
