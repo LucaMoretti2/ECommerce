@@ -1,4 +1,4 @@
-package notificaciones;
+package notificacion;
 
 import estadoDePedido.*;
 import ecommerce.*;

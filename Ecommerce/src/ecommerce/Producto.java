@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import busquedaPorCatalogo.Criterio;
+import reporte.ReporteVisitor;
 
 public class Producto extends CatalogoDeProductos{
 	private Integer SKU;
@@ -31,6 +32,11 @@ public class Producto extends CatalogoDeProductos{
 		this.descuento = descuento;
 		this.stock = stock;
 		this.atributosDinamicos = new HashMap<>();
+	}
+	
+	
+	public void aceptar(ReporteVisitor visitor) {
+		visitor.visitarProducto(this);
 	}
 	
 	public int getSKU() {

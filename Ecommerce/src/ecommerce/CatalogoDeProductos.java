@@ -4,6 +4,7 @@ public abstract class CatalogoDeProductos {
 	String nombre;
 	static String descripcion;
 	String categoria;
+	int cantidadVendida;
 	
 	public abstract float getPrecioFinal();
 	public abstract void decrementarStock();
@@ -24,8 +25,14 @@ public abstract class CatalogoDeProductos {
 	public String getNombre() {
 		return nombre;
 	}
+
+	public int getCantidadVendida() {
+		return cantidadVendida;
+	}
 	
-	
+	public void incrementarCantidadVendida() {
+		cantidadVendida ++;
+	}
 }
 
 

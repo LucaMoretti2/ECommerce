@@ -5,7 +5,7 @@ import java.util.List;
 import envio.MetodoDeEnvio;
 import estadoDePedido.EstadoDePedido;
 import metodosDePago.MetodosDePago;
-import notificaciones.*;
+import notificacion.*;
 
 public class Pedido {
 
@@ -55,7 +55,6 @@ public class Pedido {
 	}
 	
 	public void confirmarPedido() {
-		decrementarStock();
 		estadoActual.confirmarPedido(this);
 	}
 	
@@ -63,6 +62,7 @@ public class Pedido {
 		// TODO Auto-generated method stub
 		for(CatalogoDeProductos p: productos) {
 			p.decrementarStock();
+			p.incrementarCantidadVendida();
 		}
 	}
 

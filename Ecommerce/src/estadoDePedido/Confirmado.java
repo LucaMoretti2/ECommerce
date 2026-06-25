@@ -19,6 +19,7 @@ public class Confirmado implements EstadoDePedido {
 	@Override
 	public void preparar(Pedido pedido) {
 		// TODO Auto-generated method stub
+		pedido.decrementarStock();
 		pedido.setEstado(new EnPreparacion());
 	}
 

@@ -2,6 +2,8 @@ package ecommerce;
 
 import java.util.List;
 
+import reporte.ReporteVisitor;
+
 public class Paquete extends CatalogoDeProductos{
 	
 	
@@ -14,6 +16,9 @@ public class Paquete extends CatalogoDeProductos{
 	
 	}
 
+	public void aceptar(ReporteVisitor visitor) {
+			visitor.visitarPaquete(this);
+	}
 	
 	public void agregarProducto(CatalogoDeProductos producto) {
 		this.productos.add(producto);
