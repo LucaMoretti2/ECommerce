@@ -18,6 +18,7 @@ public class Pedido {
 	MetodosDePago metodoDePago;
 	List<ObservadorDePedido> observadores;
 	Cliente cliente; //ver como notificar en el mail del cliente
+	List<NotaDeCredito> notasDeCredito;
 	
 	public Pedido(EstadoDePedido e, List<CatalogoDeProductos> p) {
 		this.estadoActual = e;
@@ -138,5 +139,11 @@ public class Pedido {
 	
 	public float getMontoTotal() {
 		return (getPrecio() + calcularCostoDeEnvio());
+	}
+	
+	public NotaDeCredito generarNotaDeCredito(float monto) {
+		NotaDeCredito nota = new NotaDeCredito(cliente, monto, this);
+		notasDeCredito.add(nota);
+		return nota;
 	}
 }

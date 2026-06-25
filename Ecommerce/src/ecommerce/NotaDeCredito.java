@@ -2,23 +2,33 @@ package ecommerce;
 
 public class NotaDeCredito {
 	
-	String NotaID;
+	
 	Cliente cliente;
 	Float montoAReembolsar;
+	Pedido pedido;
 	
-	public NotaDeCredito(String id, Cliente cliente, Float monto) {
-		this.NotaID = id;
+	public NotaDeCredito( Cliente cliente, Float monto, Pedido pedido) {
+		
 		this.cliente = cliente;
 		this.montoAReembolsar = monto;
+		this.pedido = pedido;
 	}
 	
 	public Float getMontoAReembolsar() {
 		return montoAReembolsar;
 	}
 	
+	public Float getMontoAReembolsar1() {
+		return pedido.getMontoTotal();
+	}
+	
 	public String getClienteID() {
 		return cliente.id;
 		
+	}
+	
+	public Pedido getPedido() {
+		return pedido;
 	}
 }
 

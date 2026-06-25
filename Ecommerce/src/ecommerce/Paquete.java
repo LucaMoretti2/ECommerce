@@ -4,9 +4,16 @@ import java.util.List;
 
 public class Paquete extends CatalogoDeProductos{
 	
+	
 	 List<CatalogoDeProductos> productos;
 	 float descuento;
 	 float peso;
+	 
+	  public Paquete(String nombre, String descripcion, String categoria) {
+		super(nombre, descripcion, categoria);
+	
+	}
+
 	
 	public void agregarProducto(CatalogoDeProductos producto) {
 		this.productos.add(producto);
@@ -47,6 +54,23 @@ public class Paquete extends CatalogoDeProductos{
 			peso += p.getPeso();
 		}
 		return peso;
+	}
+
+	@Override
+	public boolean tieneStockDisponible() {
+		for(CatalogoDeProductos p: productos) {
+			if(p.tieneStockDisponible()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	@Override
+	public String getCategoria() {
+		
+		return categoria;
 	}
 	
 }

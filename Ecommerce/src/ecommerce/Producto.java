@@ -3,11 +3,12 @@ package ecommerce;
 import java.util.HashMap;
 import java.util.Map;
 
+import busquedaPorCatalogo.Criterio;
+
 public class Producto extends CatalogoDeProductos{
 	private Integer SKU;
 	String nombre;
 	String marca;
-	String categoria;
 	Float precio;
 	Float peso;
 	Float descuento;
@@ -18,11 +19,11 @@ public class Producto extends CatalogoDeProductos{
 	
 	
 	
+	
 	public Producto(int sku, String nombre, String marca, String categoria, Float precio,
 			Float peso, Float descuento, int stock) {
-		super();
+		super(nombre, descripcion, categoria);
 		this.SKU = sku;
-		this.nombre = nombre;
 		this.marca = marca;
 		this.categoria = categoria;
 		this.precio = precio;
@@ -56,14 +57,6 @@ public class Producto extends CatalogoDeProductos{
 		this.marca = marca;
 	}
 
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-
 	public Float getPrecio() {
 		return precio;
 	}
@@ -82,6 +75,10 @@ public class Producto extends CatalogoDeProductos{
 
 	public void setPeso(Float peso) {
 		this.peso = peso;
+	}
+	
+	public String getCategoria() {
+		return categoria;
 	}
 	
 	public Float getDescuento() {
@@ -134,6 +131,12 @@ public class Producto extends CatalogoDeProductos{
 	public Object getAtributoDinamico(String nombreAtributo) {
         return this.atributosDinamicos.get(nombreAtributo);
     }
+
+	@Override
+	public boolean tieneStockDisponible() {
+		return stock > 0;
+		
+	}
 	
 	
 	
