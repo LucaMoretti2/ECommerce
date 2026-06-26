@@ -35,7 +35,7 @@ public class BilleteraVirtual extends MetodosDePago{
 		System.out.println("Tu pago fue acreditado con exito");
 	}
 	
-	public void notificarResultados() {
+	public void notificarResultados(Pedido pedido) {
 		apiBilletera.notificar();
 	}
 	

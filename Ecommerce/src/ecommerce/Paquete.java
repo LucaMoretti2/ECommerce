@@ -1,23 +1,28 @@
 package ecommerce;
 
+import java.util.ArrayList;
 import java.util.List;
-
+import reporte.ReporteVisitable;
 import reporte.ReporteVisitor;
 
-public class Paquete extends CatalogoDeProductos{
+public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 	
-	
-	 List<CatalogoDeProductos> productos;
-	 float descuento;
-	 float peso;
+	List<CatalogoDeProductos> productos;
+	float descuento;
+	float peso;
 	 
-	  public Paquete(String nombre, String descripcion, String categoria) {
+	public Paquete(String nombre, String descripcion, String categoria) {
 		super(nombre, descripcion, categoria);
-	
+		this.productos = new ArrayList<>();
 	}
 
-	public void aceptar(ReporteVisitor visitor) {
-			visitor.visitarPaquete(this);
+	public float getPrecioFinal() {
+		
+		float precioFinal = 0;
+		for (CatalogoDeProductos p : productos) {
+			precioFinal += p.getPrecioFinal();
+		}
+		return precioFinal * 	(1 - descuento);
 	}
 	
 	public void agregarProducto(CatalogoDeProductos producto) {
@@ -28,18 +33,9 @@ public class Paquete extends CatalogoDeProductos{
 		this.productos.remove(producto);
 	}
 	
-	public float getPrecioFinal() {
-		
-		float precioFinal = 0;
-		for (CatalogoDeProductos p : productos) {
-			precioFinal += p.getPrecioFinal();
-		}
-		return precioFinal * 	(1 - descuento);
-	}
 
 	@Override
 	public void decrementarStock() {
-		// TODO Auto-generated method stub
 		for(CatalogoDeProductos p: productos) {
 			p.decrementarStock();
 		}
@@ -47,7 +43,6 @@ public class Paquete extends CatalogoDeProductos{
 
 	@Override
 	public void incrementarStock() {
-		// TODO Auto-generated method stub
 		for(CatalogoDeProductos p: productos) {
 			p.incrementarStock();
 		}
@@ -60,7 +55,7 @@ public class Paquete extends CatalogoDeProductos{
 		}
 		return peso;
 	}
-
+	
 	@Override
 	public boolean tieneStockDisponible() {
 		for(CatalogoDeProductos p: productos) {
@@ -70,12 +65,14 @@ public class Paquete extends CatalogoDeProductos{
 		}
 		return false;
 	}
-
-
-	@Override
-	public String getCategoria() {
-		
-		return categoria;
-	}
 	
+	
+	public void aceptar(ReporteVisitor visitor) {
+		visitor.visitarPaquete(this);
+	}
+
+	
+	
+	
+
 }

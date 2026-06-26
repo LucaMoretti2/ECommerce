@@ -1,6 +1,5 @@
 package metodosDePago;
 
-
 import ecommerce.Pedido;
 
 public class TransferenciaBancaria extends MetodosDePago {
@@ -21,9 +20,8 @@ public class TransferenciaBancaria extends MetodosDePago {
 		System.out.println("Tus datos fueron validados con exito");
 	}
 	
-	public void reservarFondos(Pedido pedido) {
-		
-		
+	public void reservarFondos(Pedido pedido) throws MetodoDePagoException {
+		//No aplica para transferencia bancaria
 	}
 
 	public void ejecutarTransaccion(Pedido pedido) throws MetodoDePagoException {
@@ -32,11 +30,11 @@ public class TransferenciaBancaria extends MetodosDePago {
 			}
 			System.out.println("El monto" + pedido.getMontoTotal() + "fue transferido o programado con exito");
 	}
-		
-
 	
-	public void notificarResultados() {
-		
+	
+	public void notificarResultados(Pedido pedido) {
+		String comprobante = "Comprobante CBU: " + cbu;
+	    pedido.agregarComprobante(comprobante);
 	}
 	
 	

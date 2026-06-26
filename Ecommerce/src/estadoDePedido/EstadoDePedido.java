@@ -14,5 +14,3 @@ public interface EstadoDePedido {
 	void confirmarPedido(Pedido pedido);
 	
 }
-
-//hay que cambiar las excepciones porque el enunciado dice "Intentar una operación inválida debe lanzar una excepción de dominio propia, no una excepción genérica."

@@ -2,7 +2,7 @@ package ecommerce;
 
 public abstract class CatalogoDeProductos {
 	String nombre;
-	static String descripcion;
+	String descripcion;
 	String categoria;
 	int cantidadVendida;
 	
@@ -11,8 +11,6 @@ public abstract class CatalogoDeProductos {
 	public abstract void incrementarStock();
 	protected abstract float getPeso();
 	public abstract boolean tieneStockDisponible();
-	public abstract String getCategoria();
-	
 
 	public CatalogoDeProductos(String nombre, String descripcion, String categoria) {
 		super();
@@ -33,6 +31,12 @@ public abstract class CatalogoDeProductos {
 	public void incrementarCantidadVendida() {
 		cantidadVendida ++;
 	}
+	
+	public String getCategoria() {
+		
+		return categoria;
+	}
+	
 }
 
 

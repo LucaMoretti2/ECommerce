@@ -2,31 +2,24 @@ package ecommerce;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import busquedaPorCatalogo.Criterio;
+import reporte.ReporteVisitable;
 import reporte.ReporteVisitor;
 
-public class Producto extends CatalogoDeProductos{
+public class Producto extends CatalogoDeProductos implements ReporteVisitable{
 	private Integer SKU;
-	String nombre;
 	String marca;
-	Float precio;
-	Float peso;
-	Float descuento;
+	float precio;
+	float descuento;
+	float peso;
 	int stock;
-	Float alto;
-	Float ancho;
 	Map<String, Object> atributosDinamicos;
-	
-	
 	
 	
 	public Producto(int sku, String nombre, String marca, String categoria, Float precio,
 			Float peso, Float descuento, int stock) {
-		super(nombre, descripcion, categoria);
+		super(nombre, null, categoria);
 		this.SKU = sku;
 		this.marca = marca;
-		this.categoria = categoria;
 		this.precio = precio;
 		this.peso = peso;
 		this.descuento = descuento;
@@ -34,42 +27,26 @@ public class Producto extends CatalogoDeProductos{
 		this.atributosDinamicos = new HashMap<>();
 	}
 	
-	
-	public void aceptar(ReporteVisitor visitor) {
-		visitor.visitarProducto(this);
-	}
-	
 	public int getSKU() {
 		return SKU;
-	}
-
-	public void setSKU(int sku) {
-		SKU = sku;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public String getMarca() {
 		return marca;
 	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
-	public Float getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
-
-	public void setPrecio(Float precio) {
+	
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
+	
 
 	public float getPrecioFinal() {
 		return precio * (1 - descuento);
@@ -79,15 +56,8 @@ public class Producto extends CatalogoDeProductos{
 		return peso;
 	}
 
-	public void setPeso(Float peso) {
-		this.peso = peso;
-	}
 	
-	public String getCategoria() {
-		return categoria;
-	}
-	
-	public Float getDescuento() {
+	public float getDescuento() {
 		return descuento;
 	}
 	
@@ -99,13 +69,9 @@ public class Producto extends CatalogoDeProductos{
 		return stock;
 	}
 	
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-	
 	
 	public boolean validar(String[] atributosDinamicosRequeridos) {
-		if( this.nombre != null && this.SKU != null) {
+		if( this.nombre == null || this.SKU == null) {
 			return false;
 		}
 		if (atributosDinamicosRequeridos != null) {
@@ -144,7 +110,8 @@ public class Producto extends CatalogoDeProductos{
 		
 	}
 	
-	
-	
+	public void aceptar(ReporteVisitor visitor) {
+		visitor.visitarProducto(this);
+	}
 	
 }

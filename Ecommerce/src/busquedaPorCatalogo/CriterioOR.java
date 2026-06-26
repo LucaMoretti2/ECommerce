@@ -4,11 +4,8 @@ import ecommerce.CatalogoDeProductos;
 
 public class CriterioOR extends CriterioComplejo{
 	
-
 	Criterio primerCriterio;
 	Criterio segundoCriterio;
-	
-	
 
 	public CriterioOR(Criterio primerCriterio, Criterio segundoCriterio) {
 		super();

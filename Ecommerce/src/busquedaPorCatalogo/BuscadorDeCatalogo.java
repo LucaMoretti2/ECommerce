@@ -7,10 +7,10 @@ import ecommerce.CatalogoDeProductos;
 
 public class BuscadorDeCatalogo {
 	
-	List<CatalogoDeProductos> resultado = new ArrayList<>();
 	List<CatalogoDeProductos> productos;
 	
 	public List<CatalogoDeProductos> buscar(Criterio criterio){
+		List<CatalogoDeProductos> resultado = new ArrayList<>();
 		for(CatalogoDeProductos p: productos) {
 			if(criterio.satisface(p)) {
 				resultado.add(p);

@@ -4,16 +4,14 @@ import ecommerce.Pedido;
 
 public abstract class MetodosDePago {
 	
-	Pedido pedido;
-	
-	public final void finalizarPago() throws MetodoDePagoException {
+	public final void finalizarPago(Pedido pedido) throws MetodoDePagoException {
 		validarDatos(pedido);
 		reservarFondos(pedido);
 		ejecutarTransaccion(pedido);
-		notificarResultados();
+		notificarResultados(pedido);
 	}
 	public abstract void validarDatos(Pedido pedido) throws MetodoDePagoException;
 	public abstract void reservarFondos(Pedido pedido) throws MetodoDePagoException;
 	public abstract void ejecutarTransaccion(Pedido pedido) throws MetodoDePagoException;
-	public abstract void notificarResultados();
+	public abstract void notificarResultados(Pedido pedido);
 }

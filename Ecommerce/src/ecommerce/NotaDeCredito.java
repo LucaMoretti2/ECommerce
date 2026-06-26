@@ -7,7 +7,7 @@ public class NotaDeCredito {
 	Float montoAReembolsar;
 	Pedido pedido;
 	
-	public NotaDeCredito( Cliente cliente, Float monto, Pedido pedido) {
+	public NotaDeCredito(Cliente cliente, Float monto, Pedido pedido) {
 		
 		this.cliente = cliente;
 		this.montoAReembolsar = monto;
@@ -18,12 +18,9 @@ public class NotaDeCredito {
 		return montoAReembolsar;
 	}
 	
-	public Float getMontoAReembolsar1() {
-		return pedido.getMontoTotal();
-	}
 	
 	public String getClienteID() {
-		return cliente.id;
+		return cliente.getID();
 		
 	}
 	

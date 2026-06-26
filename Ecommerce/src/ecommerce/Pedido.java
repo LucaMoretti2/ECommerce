@@ -1,9 +1,12 @@
 package ecommerce;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import envio.Direccion;
 import envio.MetodoDeEnvio;
 import estadoDePedido.EstadoDePedido;
+import metodosDePago.MetodoDePagoException;
 import metodosDePago.MetodosDePago;
 import notificacion.*;
 
@@ -12,17 +15,20 @@ public class Pedido {
 	EstadoDePedido estadoActual;
 	EstadoDePedido estadoAnterior;
 	List<CatalogoDeProductos> productos;
-	float peso;
-	float precio;
 	MetodoDeEnvio metodoDeEnvio;
 	MetodosDePago metodoDePago;
 	List<ObservadorDePedido> observadores;
-	Cliente cliente; //ver como notificar en el mail del cliente
+	Cliente cliente;
 	List<NotaDeCredito> notasDeCredito;
+	Direccion direccionDeEntrega;
+	List<String> comprobantes;
 	
 	public Pedido(EstadoDePedido e, List<CatalogoDeProductos> p) {
 		this.estadoActual = e;
 		this.productos = p;
+		this.observadores = new ArrayList<>();
+	    this.notasDeCredito = new ArrayList<>();
+	    this.comprobantes = new ArrayList<>();
 	}
 	
 	public Cliente getCliente() {
@@ -40,6 +46,7 @@ public class Pedido {
 	public void setEstado(EstadoDePedido e) {
 		this.estadoAnterior = this.estadoActual;
 		this.estadoActual = e;
+		notificar(estadoAnterior, estadoActual);
 	}
 	
 	public EstadoDePedido getEstado() {
@@ -57,19 +64,12 @@ public class Pedido {
 	public void confirmarPedido() {
 		estadoActual.confirmarPedido(this);
 	}
-	
-	public void decrementarStock() {
-		// TODO Auto-generated method stub
-		for(CatalogoDeProductos p: productos) {
-			p.decrementarStock();
-			p.incrementarCantidadVendida();
-		}
-	}
 
 
 	public void cancelarPedido() {
 		estadoActual.cancelarPedido(this);
 	}
+	
 	
 	public void preparar() {
 		estadoActual.preparar(this);
@@ -89,15 +89,27 @@ public class Pedido {
 			p.incrementarStock();
 		}
 	}
+	
+	public void decrementarStock() {
+		// TODO Auto-generated method stub
+		for(CatalogoDeProductos p: productos) {
+			p.decrementarStock();
+			p.incrementarCantidadVendida();
+		}
+	}
 
 	public void generarNotaCreditoProductos() {
-		// TODO Auto-generated method stub
-		//ver como hacer la nota de credito
+		generarNotaDeCredito(getPrecio());
 	}
 
 	public void generarNotaCreditoEnvio() {
-		// TODO Auto-generated method stub
-		
+		generarNotaDeCredito(calcularCostoDeEnvio());
+	}
+	
+	public NotaDeCredito generarNotaDeCredito(float monto) {
+		NotaDeCredito nota = new NotaDeCredito(cliente, monto, this);
+		notasDeCredito.add(nota);
+		return nota;
 	}
 	
 	public float getPeso() {
@@ -122,15 +134,16 @@ public class Pedido {
 	
 	public float calcularCostoDeEnvio() {
 		return this.metodoDeEnvio.costoDeEnvio(this);
-		
-		
 	}
+	
 	public void agregarObservador(ObservadorDePedido obs) {
 		observadores.add(obs);
 	}
+	
 	public void quitarObservador(ObservadorDePedido obs) {
 		observadores.remove(obs);
 	}
+	
 	public void notificar(EstadoDePedido anterior, EstadoDePedido nuevo){
 		for(ObservadorDePedido obs: observadores) {
 			obs.actualizar(this, anterior, nuevo);
@@ -141,9 +154,24 @@ public class Pedido {
 		return (getPrecio() + calcularCostoDeEnvio());
 	}
 	
-	public NotaDeCredito generarNotaDeCredito(float monto) {
-		NotaDeCredito nota = new NotaDeCredito(cliente, monto, this);
-		notasDeCredito.add(nota);
-		return nota;
+	public Direccion getDireccionDeEntrega() {
+	    return direccionDeEntrega;
 	}
+
+	public void agregarComprobante(String comprobante) {
+		comprobantes.add(comprobante);
+	}
+	
+	public void setMetodoDeEnvio(MetodoDeEnvio metodoDeEnvio) {
+	    this.metodoDeEnvio = metodoDeEnvio;
+	}
+	
+	public void setMetodoDePago(MetodosDePago metodoDePago) {
+	    this.metodoDePago = metodoDePago;
+	}
+	public void realizarPago() throws MetodoDePagoException {
+	    metodoDePago.finalizarPago(this);
+	}
+	
+	
 }

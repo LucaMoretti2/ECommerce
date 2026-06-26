@@ -43,8 +43,9 @@ public class TarjetaDeCredito extends MetodosDePago {
 	};
 	
 	
-	public void notificarResultados() {
-		
+	public void notificarResultados(Pedido pedido) {
+		 String cupon = "Cupón de pago - Tarjeta: " + numeroDeTarjeta;
+		 pedido.agregarComprobante(cupon);
 	}
 
 	

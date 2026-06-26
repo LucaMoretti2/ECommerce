@@ -5,10 +5,17 @@ import estadoDePedido.*;
 
 public class Fidelizacion implements ObservadorDePedido {
 
+	MailSender sender;
+
+    public Fidelizacion(MailSender sender) {
+        this.sender = sender;
+    }
+	
 	@Override
 	public void actualizar(Pedido ped, EstadoDePedido anterior, EstadoDePedido nuevo) {
 		if(nuevo instanceof Cancelado) {
-			generarCupon();
+			String cupon = generarCupon();
+            sender.enviarMail(ped.getCliente().getMail(), "Te regalamos un cupon", cupon, null);
 		}
 	}
 
