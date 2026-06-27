@@ -1,12 +1,14 @@
 package ecommerce;
 
+import envio.Direccion;
+
 public class Cliente {
 	String id;
-	String direccion;
+	Direccion direccion;
 	String mail;
 	Pedido pedido;
 	
-	public Cliente(String id, String direccion, String mail) {
+	public Cliente(String id, Direccion direccion, String mail) {
 		this.id = id;
 		this.direccion = direccion;
 		this.mail = mail;
@@ -16,7 +18,7 @@ public class Cliente {
 		return id;
 	}
 	
-	public String getDireccion() {
+	public Direccion getDireccion() {
 		return direccion;
 	}
 	
