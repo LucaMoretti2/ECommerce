@@ -71,6 +71,12 @@ public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 		visitor.visitarPaquete(this);
 	}
 
+	@Override
+	public int getStock() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 	
 	
