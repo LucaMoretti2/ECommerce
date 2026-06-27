@@ -20,9 +20,9 @@ public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 		
 		float precioFinal = 0;
 		for (CatalogoDeProductos p : productos) {
-			precioFinal += p.getPrecioFinal();
+			precioFinal += p.getPrecio();
 		}
-		return precioFinal * 	(1 - descuento);
+		return precioFinal ;
 	}
 	
 	public void agregarProducto(CatalogoDeProductos producto) {
@@ -73,8 +73,20 @@ public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 
 	@Override
 	public int getStock() {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public float getPrecio() {
+		float precioBase = 0;
+		for (CatalogoDeProductos p : productos) {
+			precioBase += p.getPrecio();
+		}
+		return precioBase ;
+	}
+	
+	public List<CatalogoDeProductos> getProductos(){
+		return productos;
 	}
 
 	

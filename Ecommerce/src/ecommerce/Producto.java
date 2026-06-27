@@ -47,10 +47,11 @@ public class Producto extends CatalogoDeProductos implements ReporteVisitable{
 		this.precio = precio;
 	}
 	
-
+	
 	public float getPrecioFinal() {
-		return precio * (1 - descuento);
+		return  precio * ((100 - descuento)/100);
 	}
+	
 
 	public float getPeso() {
 		return peso;

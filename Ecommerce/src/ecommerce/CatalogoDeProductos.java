@@ -12,6 +12,7 @@ public abstract class CatalogoDeProductos {
 	protected abstract float getPeso();
 	public abstract boolean tieneStockDisponible();
 	public abstract int getStock();
+	public abstract float getPrecio();
 
 	public CatalogoDeProductos(String nombre, String descripcion, String categoria) {
 		super();
