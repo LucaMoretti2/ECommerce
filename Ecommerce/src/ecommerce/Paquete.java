@@ -16,14 +16,7 @@ public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 		this.productos = new ArrayList<>();
 	}
 
-	public float getPrecioFinal() {
-		
-		float precioFinal = 0;
-		for (CatalogoDeProductos p : productos) {
-			precioFinal += p.getPrecio();
-		}
-		return precioFinal ;
-	}
+	
 	
 	public void agregarProducto(CatalogoDeProductos producto) {
 		this.productos.add(producto);
@@ -73,7 +66,11 @@ public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 
 	@Override
 	public int getStock() {
-		return 0;
+		int cantidadDeStock = 0;
+		for(CatalogoDeProductos p: productos ) {
+			cantidadDeStock += p.getStock();
+		}
+		return cantidadDeStock;
 	}
 
 	@Override
@@ -84,6 +81,18 @@ public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 		}
 		return precioBase ;
 	}
+	
+	
+	public float getPrecioFinal() {
+		
+		float precioFinal = 0;
+		for (CatalogoDeProductos p : productos) {
+			precioFinal += p.getPrecio();
+		}
+		return precioFinal ;
+	}
+	//fijarse que getPrecio y getPrecioFinal son iguales
+	
 	
 	public List<CatalogoDeProductos> getProductos(){
 		return productos;
