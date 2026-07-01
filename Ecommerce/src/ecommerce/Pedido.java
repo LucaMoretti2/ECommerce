@@ -191,4 +191,8 @@ public class Pedido {
 	public List<String> getComprobantes(){
 		return this.comprobantes;
 	}
+	
+	public void setDireccionDeEntrega(Direccion d) {
+		this.direccionDeEntrega = d;
+	}
 }
