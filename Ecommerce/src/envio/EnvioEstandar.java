@@ -5,16 +5,15 @@ import ecommerce.Pedido;
 public class EnvioEstandar implements MetodoDeEnvio {
 
 	
-	private Direccion direccionDestino;
+	CorreoArgentina correo;
 	
-	public EnvioEstandar(Direccion direccionDestino) {
-        this.direccionDestino = direccionDestino;
+	public EnvioEstandar(CorreoArgentina correo) {
+        this.correo = correo;
     }
 
 	
 	@Override
 	public float costoDeEnvio(Pedido pedido) {
-		//return float CorreoArgentina.estimarEnvio(pedido.getPeso(), pedido.getDireccionDeEntrega);
-		return 0;
+		return correo.estimarEnvio(pedido.getPeso(), pedido.getDireccionDeEntrega());
 	}
 }

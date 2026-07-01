@@ -9,6 +9,10 @@ public class BuscadorDeCatalogo {
 	
 	List<CatalogoDeProductos> productos;
 	
+	public BuscadorDeCatalogo(List<CatalogoDeProductos> productos) {
+		this.productos = productos;
+	}
+	
 	public List<CatalogoDeProductos> buscar(Criterio criterio){
 		List<CatalogoDeProductos> resultado = new ArrayList<>();
 		for(CatalogoDeProductos p: productos) {
