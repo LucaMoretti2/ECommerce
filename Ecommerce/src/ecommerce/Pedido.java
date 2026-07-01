@@ -23,7 +23,7 @@ public class Pedido {
 	Direccion direccionDeEntrega;
 	List<String> comprobantes;
 	
-	public Pedido(EstadoDePedido e, List<CatalogoDeProductos> p, Cliente c) {
+	public Pedido(EstadoDePedido e, List<CatalogoDeProductos> p, Cliente c, MetodoDeEnvio metodo) {
 		this.estadoActual = e;
 		this.productos = p;
 		this.cliente = c;
@@ -31,6 +31,7 @@ public class Pedido {
 	    this.notasDeCredito = new ArrayList<>();
 	    this.comprobantes = new ArrayList<>();
 	    this.direccionDeEntrega = this.cliente.direccion;
+	    metodoDeEnvio = metodo;
 	}
 	
 	public Cliente getCliente() {
@@ -185,5 +186,9 @@ public class Pedido {
 	
 	public MetodosDePago getMetodoDePago() {
 		return this.metodoDePago;
+	}
+	
+	public List<String> getComprobantes(){
+		return this.comprobantes;
 	}
 }

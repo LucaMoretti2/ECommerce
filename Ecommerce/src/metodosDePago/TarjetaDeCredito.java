@@ -29,7 +29,7 @@ public class TarjetaDeCredito extends MetodosDePago {
 	
 	public void reservarFondos(Pedido pedido) throws MetodoDePagoException {
 		if(!apiTarjeta.preAutorizarMonto(pedido.getMontoTotal())) {
-			throw new MetodoDePagoException("El pago no fue autorizado por la identidad bancaria");
+			throw new MetodoDePagoException("El pago no fue autorizado por la entidad bancaria");
 		}
 		System.out.println("El monto" + pedido.getMontoTotal() + "fue reservado en la tarjeta");
 	}

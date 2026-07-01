@@ -24,6 +24,7 @@ class PedidoTestCase {
 	Pedido pedido;
 	CatalogoDeProductos producto1;
 	Direccion direccion;
+	MetodoDeEnvio metodo;
 	
 	@BeforeEach
 	void setUp() {
@@ -31,7 +32,8 @@ class PedidoTestCase {
 		estadoDePedido = new Borrador();
 		direccion = new Direccion("Saenz Peña", "Quilmes", "Buenos Aires", "1978");
 		cliente = new Cliente("123", direccion, "dasdas@gmail.com");
-		pedido = new Pedido(estadoDePedido,productos,cliente);
+		metodo = mock(MetodoDeEnvio.class);
+		pedido = new Pedido(estadoDePedido,productos,cliente, metodo);
 		producto1 = mock(Producto.class);
 	}
 	@Test
