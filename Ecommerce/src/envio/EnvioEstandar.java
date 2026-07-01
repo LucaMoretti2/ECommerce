@@ -4,7 +4,6 @@ import ecommerce.Pedido;
 
 public class EnvioEstandar implements MetodoDeEnvio {
 
-	
 	CorreoArgentina correo;
 	
 	public EnvioEstandar(CorreoArgentina correo) {

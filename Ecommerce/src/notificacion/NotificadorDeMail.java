@@ -9,7 +9,7 @@ public class NotificadorDeMail implements ObservadorDePedido{
 	
 	public NotificadorDeMail(MailSender sender) {
         this.sender = sender;
-    }
+	}
 	
 	@Override
 	public void actualizar(Pedido p, EstadoDePedido anterior, EstadoDePedido nuevo) {

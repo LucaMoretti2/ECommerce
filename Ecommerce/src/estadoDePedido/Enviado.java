@@ -32,11 +32,8 @@ public class Enviado implements EstadoDePedido {
 		}
 	}
 
-
-
 	@Override
 	public void cancelarPedido(Pedido pedido) {
-		//reembolsa el costo del producto, no del envio
 		pedido.generarNotaCreditoProductos();
 		pedido.setEstado(new Cancelado());
 	}

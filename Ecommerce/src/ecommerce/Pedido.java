@@ -87,14 +87,12 @@ public class Pedido {
 	}
 
 	public void incrementarStock() {
-		// TODO Auto-generated method stub
 		for(CatalogoDeProductos p: productos) {
 			p.incrementarStock();
 		}
 	}
 	
 	public void decrementarStock() {
-		// TODO Auto-generated method stub
 		for(CatalogoDeProductos p: productos) {
 			p.decrementarStock();
 			p.incrementarCantidadVendida();
