@@ -73,6 +73,7 @@ class PedidoTestCase {
 		pedido.setEstado(estadoDePedidoNuevo);
 		pedido.getEstado().agregarItem(pedido, producto1);
 		assertEquals(pedido.getProductos().size(),1);
+		// probar haciendo pedido.agregarItem(pedido,producto1)
 	}
 	
 	@Test
@@ -82,6 +83,7 @@ class PedidoTestCase {
 		pedido.getEstado().agregarItem(pedido, producto1);
 		pedido.getEstado().quitarItem(pedido, producto1);
 		assertEquals(pedido.getProductos().size(),0);
+		// probar haciendo pedido.quitarItem(pedido,producto1)
 	}
 	
 	@Test

@@ -15,7 +15,7 @@ public class CriterioAND extends CriterioComplejo{
 
 	@Override
 	public boolean satisface(CatalogoDeProductos catalogo) {
-		// TODO Auto-generated method stub
+		
 		return (primerCriterio.satisface(catalogo) && segundoCriterio.satisface(catalogo));
 	}
 

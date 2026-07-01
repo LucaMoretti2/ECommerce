@@ -25,18 +25,18 @@ public class Cancelado implements EstadoDePedido {
 
 	@Override
 	public void entregar(Pedido pedido) {
-		throw new OperacionInvalidaException("No se puede enviar un entregar en cancelado");
+		throw new OperacionInvalidaException("No se puede entregar un pedido en cancelado");
 	}
 
 
 	@Override
 	public void cancelarPedido(Pedido pedido) {
-		throw new OperacionInvalidaException("No se puede enviar un cancelar en cancelado");
+		throw new OperacionInvalidaException("No se puede cancelar un pedido en cancelado");
 	}
 
 	@Override
 	public void confirmarPedido(Pedido pedido) {
-		throw new OperacionInvalidaException("No se puede enviar un confirmar en cancelado");
+		throw new OperacionInvalidaException("No se puede confirmar un pedido en cancelado");
 	}
 
 }
