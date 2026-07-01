@@ -27,6 +27,9 @@ public class Enviado implements EstadoDePedido {
 	@Override
 	public void entregar(Pedido pedido) {
 		pedido.setEstado(new Entregado());
+		for(CatalogoDeProductos p: pedido.getProductos()) {
+			p.incrementarCantidadVendida();
+		}
 	}
 
 

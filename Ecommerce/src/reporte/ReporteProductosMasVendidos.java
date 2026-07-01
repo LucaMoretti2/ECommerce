@@ -13,7 +13,6 @@ public class ReporteProductosMasVendidos implements ReporteVisitor {
 	
 	List<CatalogoDeProductos> productosMasVendidos = new ArrayList<>();
 	
-
 	@Override
 	public void visitarProducto(Producto producto) {
 		productosMasVendidos.add(producto);
