@@ -11,9 +11,10 @@ public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 	float descuento;
 	float peso;
 	 
-	public Paquete(String nombre, String descripcion, String categoria) {
+	public Paquete(String nombre, String descripcion, String categoria, float descuento) {
 		super(nombre, descripcion, categoria);
 		this.productos = new ArrayList<>();
+		this.descuento = descuento;
 	}
 
 	
@@ -84,14 +85,8 @@ public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 	
 	
 	public float getPrecioFinal() {
-		
-		float precioFinal = 0;
-		for (CatalogoDeProductos p : productos) {
-			precioFinal += p.getPrecio();
-		}
-		return precioFinal ;
+		return getPrecio() * ((100 - this.descuento) /100);
 	}
-	//fijarse que getPrecio y getPrecioFinal son iguales
 	
 	
 	public List<CatalogoDeProductos> getProductos(){

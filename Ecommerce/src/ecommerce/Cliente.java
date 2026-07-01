@@ -29,4 +29,8 @@ public class Cliente {
 	public void setPedido(Pedido p) {
 		this.pedido = p;
 	}
+	
+	public Pedido getPedido() {
+		return this.pedido;
+	}
 }

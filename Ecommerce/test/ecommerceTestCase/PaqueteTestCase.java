@@ -11,7 +11,8 @@ import reporte.ReporteVisitor;
 
 public class PaqueteTestCase {
 
-	Paquete paquete;
+	Paquete paquete1;
+	Paquete paquete2;
 	Producto producto;
 	CatalogoDeProductos componente1;
 	CatalogoDeProductos componente2;
@@ -19,7 +20,8 @@ public class PaqueteTestCase {
 	
 	@BeforeEach
 	void setUp() {
-		paquete = new Paquete("Combo electrodomesticos", "Estufas, microondas, ventiladores", "Electronica");
+		paquete1 = new Paquete("Combo electrodomesticos", "Estufas, microondas, ventiladores", "Electronica", 10.0f);
+		paquete2 = new Paquete("Combo electronica", "Auriculares, Celular, Cargador", "Electronica", 0.0f);
 		componente1 = mock(CatalogoDeProductos.class);
 		componente2 = mock(CatalogoDeProductos.class);
 	}
@@ -27,38 +29,51 @@ public class PaqueteTestCase {
 	@Test
 	void testAgregarProducto() {
 		
-		paquete.agregarProducto(componente1);
-		assertEquals(1, paquete.getProductos().size());
+		paquete1.agregarProducto(componente1);
+		assertEquals(1, paquete1.getProductos().size());
 	}
 	
 	@Test
 	void testQuitarProducto() {
 		
-		paquete.agregarProducto(componente1);
-		paquete.quitarProducto(componente1);
-		assertEquals(0, paquete.getProductos().size());
+		paquete1.agregarProducto(componente1);
+		paquete1.quitarProducto(componente1);
+		assertEquals(0, paquete1.getProductos().size());
+	}
+	
+	@Test
+	void testGetPrecio() {
+		
+		when(componente1.getPrecio()).thenReturn(1000.0f);
+	    when(componente2.getPrecio()).thenReturn(1000.0f);
+		
+		paquete2.agregarProducto(componente1);
+		paquete2.agregarProducto(componente2);
+		
+		assertEquals(2000f, paquete2.getPrecioFinal());
+		
 	}
 	
 	@Test
 	void testGetPrecioFinal() {
 		
-		when(componente1.getPrecio()).thenReturn(800.0f);
-	    when(componente2.getPrecio()).thenReturn(800.0f);
+		when(componente1.getPrecio()).thenReturn(1000.0f);
+	    when(componente2.getPrecio()).thenReturn(1000.0f);
 		
-		paquete.agregarProducto(componente1);
-		paquete.agregarProducto(componente2);
+		paquete1.agregarProducto(componente1);
+		paquete1.agregarProducto(componente2);
 		
-		assertEquals(1600f, paquete.getPrecioFinal());
+		assertEquals(1800f, paquete1.getPrecioFinal());
 		
 	}
 	
 	@Test
 	void testIncrementarStock() {
 		
-		paquete.agregarProducto(componente1);
-	    paquete.agregarProducto(componente2);
+		paquete1.agregarProducto(componente1);
+	    paquete1.agregarProducto(componente2);
 	   
-	    paquete.incrementarStock();
+	    paquete1.incrementarStock();
 
 	    verify(componente1, times(1)).incrementarStock();
 	    verify(componente2, times(1)).incrementarStock();
@@ -68,10 +83,10 @@ public class PaqueteTestCase {
 	@Test
 	void testDecrementarStockDisminuyeEnUnoElStock(){
 		
-		paquete.agregarProducto(componente1);
-	    paquete.agregarProducto(componente2);
+		paquete1.agregarProducto(componente1);
+	    paquete1.agregarProducto(componente2);
 	   
-	    paquete.decrementarStock();
+	    paquete1.decrementarStock();
 
 	    verify(componente1, times(1)).decrementarStock();
 	    verify(componente2, times(1)).decrementarStock();
@@ -83,10 +98,10 @@ public class PaqueteTestCase {
 		when(componente1.getPeso()).thenReturn(550f);
 	    when(componente2.getPeso()).thenReturn(400f);
 		
-		paquete.agregarProducto(componente1);
-		paquete.agregarProducto(componente2);
+		paquete1.agregarProducto(componente1);
+		paquete1.agregarProducto(componente2);
 		
-		assertEquals(950f, paquete.getPeso());
+		assertEquals(950f, paquete1.getPeso());
 	}
 	
 	@Test
@@ -95,10 +110,10 @@ public class PaqueteTestCase {
 		when(componente1.tieneStockDisponible()).thenReturn(true);
 	    when(componente2.tieneStockDisponible()).thenReturn(true);
 		
-		paquete.agregarProducto(componente1);
-		paquete.agregarProducto(componente2);
+		paquete1.agregarProducto(componente1);
+		paquete1.agregarProducto(componente2);
 		
-		assertEquals(true, paquete.tieneStockDisponible());
+		assertEquals(true, paquete1.tieneStockDisponible());
 	
 	}
 	
@@ -108,10 +123,10 @@ public class PaqueteTestCase {
 		when(componente1.tieneStockDisponible()).thenReturn(false);
 	    when(componente2.tieneStockDisponible()).thenReturn(false);
 		
-		paquete.agregarProducto(componente1);
-		paquete.agregarProducto(componente2);
+		paquete1.agregarProducto(componente1);
+		paquete1.agregarProducto(componente2);
 		
-		assertEquals(false, paquete.tieneStockDisponible());
+		assertEquals(false, paquete1.tieneStockDisponible());
 	
 	}
 	
@@ -121,10 +136,10 @@ public class PaqueteTestCase {
 		when(componente1.getStock()).thenReturn(4);
 	    when(componente2.getStock()).thenReturn(5);
 		
-		paquete.agregarProducto(componente1);
-		paquete.agregarProducto(componente2);
+		paquete1.agregarProducto(componente1);
+		paquete1.agregarProducto(componente2);
 		
-		assertEquals(9, paquete.getStock());
+		assertEquals(9, paquete1.getStock());
 	
 	}
 	
@@ -132,22 +147,22 @@ public class PaqueteTestCase {
 	void aceptarVisitor() {
 		
 		ReporteVisitor visitorMock = mock(ReporteVisitor.class);
-		paquete.aceptar(visitorMock);
-		verify(visitorMock, times(1)).visitarPaquete(paquete);
+		paquete1.aceptar(visitorMock);
+		verify(visitorMock, times(1)).visitarPaquete(paquete1);
 	}
 	
 	@Test
 	void testGetProductos() {
 		
-		paquete.agregarProducto(componente1);
-		paquete.agregarProducto(componente2);
+		paquete1.agregarProducto(componente1);
+		paquete1.agregarProducto(componente2);
 		
 		List<CatalogoDeProductos> listaEsperada = new ArrayList<>();
 		listaEsperada.add(componente1);
 		listaEsperada.add(componente2);
 
 	    
-	    assertIterableEquals(listaEsperada, paquete.getProductos());
+	    assertIterableEquals(listaEsperada, paquete1.getProductos());
 	
 	}
 	

@@ -27,7 +27,7 @@ class ReporteProductosMasVendidosTest {
 		productos = new ArrayList<>();
 		producto = new Producto(212, "Auriculares", "Sony", "Electrodomesticos", 100f,
 								2.5f, 0f, 0); 
-		paquete = new Paquete("Auriculares x2", "Trae dos auriculares man", "Tecnologia");
+		paquete = new Paquete("Auriculares x2", "Trae dos auriculares man", "Tecnologia", 0.0f);
 		paquete.agregarProducto(producto);
 		paquete.agregarProducto(producto);
 		reporte = new ReporteProductosMasVendidos();

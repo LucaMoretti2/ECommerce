@@ -67,23 +67,24 @@ class PedidoTestCase {
 		assertEquals(pedido.getEstado(),estadoDePedido);
 	}
 	
+	
 	@Test
 	void testAgregarItem() {
 		EstadoDePedido estadoDePedidoNuevo = new Borrador();
 		pedido.setEstado(estadoDePedidoNuevo);
-		pedido.getEstado().agregarItem(pedido, producto1);
+		pedido.agregarItem(producto1);
 		assertEquals(pedido.getProductos().size(),1);
-		// probar haciendo pedido.agregarItem(pedido,producto1)
 	}
+	
+	
 	
 	@Test
 	void testQuitarItem() {
 		EstadoDePedido estadoDePedidoNuevo = new Borrador();
 		pedido.setEstado(estadoDePedidoNuevo);
-		pedido.getEstado().agregarItem(pedido, producto1);
-		pedido.getEstado().quitarItem(pedido, producto1);
+		pedido.agregarItem(producto1);
+		pedido.quitarItem(producto1);
 		assertEquals(pedido.getProductos().size(),0);
-		// probar haciendo pedido.quitarItem(pedido,producto1)
 	}
 	
 	@Test
@@ -192,13 +193,23 @@ class PedidoTestCase {
 		assertEquals(pedido.getObservadores().size(),0);
 	}
 	
-	/*@Test
-	void testNotificador() {
-		ObservadorDePedido obs = mock(NotificadorDeMail.class);
-		pedido.agregarObservador(obs);
-		pedido.notificar(estadoDePedido, estadoDePedido);
-		assertEquals(pedido.getObservadores().size(),1);
-	} HAY QUE FIJARSE ESTE*/
+	@Test
+	void testNotificarLlamaAActualizarDeLosObservadoresRegistrados() {
+	    ObservadorDePedido obs = mock(ObservadorDePedido.class);
+	    pedido.agregarObservador(obs);
+	    EstadoDePedido anterior = new Borrador();
+	    EstadoDePedido nuevo = new Confirmado();
+	    pedido.notificar(anterior, nuevo);
+	    verify(obs).actualizar(pedido, anterior, nuevo);
+	}
+	
+	@Test
+	void testAgregarObservadorLoSumaALaListaDeObservadores() {
+	    ObservadorDePedido obs = mock(ObservadorDePedido.class);
+	    pedido.agregarObservador(obs);
+
+	    assertEquals(pedido.getObservadores().size(), 1);
+	}
 	
 	@Test
 	void testGetMontoTotal() {
@@ -222,11 +233,11 @@ class PedidoTestCase {
 		assertEquals(pedido.getMetodoDePago(),metodo);
 	}
 	
-	/*@Test
-	void testRealizarPago() {
-		APIBilleteraVirtual api = mock(APIBilleteraVirtual.class);
-		MetodosDePago metodo = new BilleteraVirtual(api);
-		pedido.realizarPago();
-		assertEquals(pedido.getMetodoDePago(),metodo);
-	} HAY QUE FIJARSE EN ESTE*/ 
+	@Test
+	void testRealizarPagoDelegaEnElMetodoDePagoAsignado() throws MetodoDePagoException {
+	    MetodosDePago metodoMock = mock(MetodosDePago.class);
+	    pedido.setMetodoDePago(metodoMock);
+	    pedido.realizarPago();
+	    verify(metodoMock).finalizarPago(pedido);
+	}
 }
