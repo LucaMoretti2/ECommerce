@@ -13,7 +13,7 @@ public class CriterioPorPrecioMaximo extends CriterioSimple {
 
 	@Override
 	public boolean satisface(CatalogoDeProductos catalogo) {
-		return catalogo.getPrecio() <= precioMaximo;
+		return catalogo.getPrecioFinal() <= precioMaximo;
 	}
 
 }
