@@ -93,8 +93,4 @@ public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 		return productos;
 	}
 
-	
-	
-	
-
 }

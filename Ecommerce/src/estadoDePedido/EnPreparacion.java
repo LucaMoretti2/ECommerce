@@ -33,7 +33,6 @@ public class EnPreparacion implements EstadoDePedido {
 
 	@Override
 	public void cancelarPedido(Pedido pedido) {
-		//REPONER STOCK
 		pedido.incrementarStock();
 		pedido.generarNotaCreditoProductos();
 		pedido.generarNotaCreditoEnvio();

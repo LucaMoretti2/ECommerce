@@ -32,8 +32,3 @@ public class ReporteHTML implements ExportadorReporte {
 	}
 
 }
-	
-	
-
-
-

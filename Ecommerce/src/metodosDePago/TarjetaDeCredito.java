@@ -48,6 +48,4 @@ public class TarjetaDeCredito extends MetodosDePago {
 		 pedido.agregarComprobante(cupon);
 	}
 
-	
-	
 }

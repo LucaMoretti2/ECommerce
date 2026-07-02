@@ -87,13 +87,11 @@ public class Producto extends CatalogoDeProductos implements ReporteVisitable{
 
 	@Override
 	public void decrementarStock() {
-		// TODO Auto-generated method stub
 		stock--;
 	}
 
 	@Override
 	public void incrementarStock() {
-		// TODO Auto-generated method stub
 		stock++;
 	}
 	
