@@ -31,7 +31,7 @@ public class TarjetaDeCredito extends MetodosDePago {
 		if(!apiTarjeta.preAutorizarMonto(pedido.getMontoTotal())) {
 			throw new MetodoDePagoException("El pago no fue autorizado por la entidad bancaria");
 		}
-		System.out.println("El monto" + pedido.getMontoTotal() + "fue reservado en la tarjeta");
+		System.out.println("El monto " + pedido.getMontoTotal() + " fue reservado en la tarjeta");
 	}
 	
 	
@@ -39,7 +39,7 @@ public class TarjetaDeCredito extends MetodosDePago {
 		if(!apiTarjeta.transferenciaRealizada()) {
 			throw new MetodoDePagoException("La transferencia no fue enviada");
 		}
-		System.out.println("El monto" + pedido.getMontoTotal() + "fue transferido con exito");
+		System.out.println("El monto " + pedido.getMontoTotal() + " fue transferido con exito");
 	};
 	
 	

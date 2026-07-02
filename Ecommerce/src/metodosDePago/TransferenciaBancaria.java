@@ -28,7 +28,7 @@ public class TransferenciaBancaria extends MetodosDePago {
 		if(!apiTransferencia.transferenciaRealizada()) {
 			throw new MetodoDePagoException("La transferencia no fue enviada");
 			}
-			System.out.println("El monto" + pedido.getMontoTotal() + "fue transferido o programado con exito");
+			System.out.println("El monto " + pedido.getMontoTotal() + " fue transferido o programado con exito");
 	}
 	
 	

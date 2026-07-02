@@ -2,10 +2,9 @@ package ecommerce;
 
 import java.util.HashMap;
 import java.util.Map;
-import reporte.ReporteVisitable;
 import reporte.ReporteVisitor;
 
-public class Producto extends CatalogoDeProductos implements ReporteVisitable{
+public class Producto extends CatalogoDeProductos{
 	private Integer SKU;
 	String marca;
 	float precio;

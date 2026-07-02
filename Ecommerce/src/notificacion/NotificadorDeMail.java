@@ -14,7 +14,7 @@ public class NotificadorDeMail implements ObservadorDePedido{
 	@Override
 	public void actualizar(Pedido p, EstadoDePedido anterior, EstadoDePedido nuevo) {
 		if(nuevo instanceof Confirmado || nuevo instanceof Enviado || nuevo instanceof Entregado) {
-			sender.enviarMail(p.getCliente().getMail(), "Su pedido se ha actualizado", "Su pedido paso de" + anterior + "a" + nuevo, null);
+			sender.enviarMail(p.getCliente().getMail(), "Su pedido se ha actualizado", "Su pedido paso de " + anterior + " a " + nuevo, null);
 		}
 	}
 	

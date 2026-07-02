@@ -2,10 +2,9 @@ package ecommerce;
 
 import java.util.ArrayList;
 import java.util.List;
-import reporte.ReporteVisitable;
 import reporte.ReporteVisitor;
 
-public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
+public class Paquete extends CatalogoDeProductos{
 	
 	List<CatalogoDeProductos> productos;
 	float descuento;
@@ -16,7 +15,6 @@ public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 		this.productos = new ArrayList<>();
 		this.descuento = descuento;
 	}
-
 	
 	
 	public void agregarProducto(CatalogoDeProductos producto) {
@@ -92,5 +90,8 @@ public class Paquete extends CatalogoDeProductos implements ReporteVisitable{
 	public List<CatalogoDeProductos> getProductos(){
 		return productos;
 	}
+
+
+	
 
 }

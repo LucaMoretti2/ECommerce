@@ -1,6 +1,9 @@
 package ecommerce;
 
-public abstract class CatalogoDeProductos {
+import reporte.ReporteVisitable;
+import reporte.ReporteVisitor;
+
+public abstract class CatalogoDeProductos implements ReporteVisitable {
 	String nombre;
 	String descripcion;
 	String categoria;
@@ -13,6 +16,7 @@ public abstract class CatalogoDeProductos {
 	public abstract boolean tieneStockDisponible();
 	public abstract int getStock();
 	public abstract float getPrecio();
+	public abstract void aceptar(ReporteVisitor visitor);
 
 	public CatalogoDeProductos(String nombre, String descripcion, String categoria) {
 		super();
